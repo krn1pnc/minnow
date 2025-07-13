@@ -50,7 +50,7 @@ string_view Reader::peek() const
   if ( !bytes_buffered() ) {
     return string_view();
   } else {
-    int tail_len = ( readp_ < writep_ ? writep_ : capacity_ ) - readp_;
+    uint64_t tail_len = ( readp_ < writep_ ? writep_ : capacity_ ) - readp_;
     return string_view( buffer_.get(), capacity_ ).substr( readp_, tail_len );
   }
 }
