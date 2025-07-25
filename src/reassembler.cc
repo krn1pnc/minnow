@@ -11,7 +11,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     return;
   }
 
-  if ( is_last_substring && first_index + data.size() < reasm_end ) {
+  if ( is_last_substring && first_index + data.size() <= reasm_end ) {
     received_last = true;
   }
 
@@ -23,7 +23,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     data_begin = max( data_begin, pit->first + pit->second.size() );
   }
 
-  while ( it != buffer_.end() && it->first + it->second.size() < data_end ) {
+  while ( it != buffer_.end() && it->first + it->second.size() <= data_end ) {
     buffer_.erase( it++ );
   }
   if ( it != buffer_.end() && it->first < data_end ) {
